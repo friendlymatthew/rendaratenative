@@ -5,35 +5,71 @@ import {
 	SafeAreaView,
 	View,
 	TouchableOpacity,
-    TextInput,
+	TextInput,
 } from "react-native";
+import React, { useState, useEffect } from "react";
 
-export default function PostScreen() {
+export default function PostScreen({ route, navigation }) {
+	const [artist, onChangeArtist] = useState("");
+	const [song, onChangeSong] = useState("");
+	const [rating, onChangeRating] = useState(null);
+
 	return (
 		<View style={styles.container}>
-			<View style={{flex: 1, }}>
+			<View style={{ flex: 1 }}>
+				<TouchableOpacity
+					onPress={() => navigation.navigate("Home", {})}
+					style={{
+						backgroundColor: "yellow",
+						paddingVertical: 4,
+						paddingHorizontal: 6,
+					}}
+				>
+					<Text style={{ fontSize: 20, fontWeight: 600 }}>Go Back</Text>
+				</TouchableOpacity>
+			</View>
+			<View style={{ flex: 1 }}>
 				<Text
 					style={{
-						
 						fontSize: 30,
 					}}
 				>
 					New Rating
 				</Text>
 			</View>
-			<View style={{ flex: 8}}>
-                <View
-                    style={{flexDirection: "row", justifyContent: "space-between", flexWrap: "wrap", backgroundColor: "orange", paddingVertical: 10, paddingHorizontal: 10}}
-                >
-                    <Text style={{ marginHorizontal: 7}}>
-                        Rating
-                    </Text>
-                    <TextInput styles={styles.input}/>
-                    
-                </View>
+			<View style={{ flex: 7 }}>
+				<View style={styles.field}>
+					<Text style={styles.fieldText}>Song</Text>
+					<TextInput
+						style={styles.fieldInput}
+						value={song}
+						onChangeText={onChangeSong}
+					/>
+				</View>
+				<View style={styles.field}>
+					<Text style={styles.fieldText}>Artist</Text>
+					<TextInput
+						style={styles.fieldInput}
+						value={artist}
+						onChangeText={onChangeArtist}
+					/>
+				</View>
+				<View style={styles.field}>
+					<Text style={styles.fieldText}>Rating</Text>
+					<TextInput
+						style={styles.fieldInput}
+						value={rating}
+						keyboardType="numeric"
+						onChangeText={onChangeRating}
+					/>
+				</View>
 
-
-            </View>
+				<View style={{ }}>
+					<TouchableOpacity>
+						<Text>Submit</Text>
+					</TouchableOpacity>
+				</View>
+			</View>
 		</View>
 	);
 }
@@ -45,10 +81,25 @@ const styles = StyleSheet.create({
 		justifyContent: "center",
 		paddingVertical: 20,
 	},
-    input: {
-        height: 40,
-        backgroundColor: "white",
-    },
+	field: {
+		flexDirection: "row",
+		alignItems: "center",
+		justifyContent: "space-between",
+		flexWrap: "wrap",
+		backgroundColor: "orange",
+		paddingVertical: 10,
+		paddingHorizontal: 10,
+	},
+	fieldText: {
+		marginHorizontal: 7,
+		fontSize: 14,
+		fontWeight: 600,
+	},
+	fieldInput: {
+		height: 40,
+		backgroundColor: "white",
+		paddingHorizontal: 5,
+	},
 	button: {
 		backgroundColor: "#07BEB8",
 		padding: 20,
