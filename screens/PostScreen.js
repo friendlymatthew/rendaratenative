@@ -165,15 +165,14 @@ export default function PostScreen({ navigation }) {
             </View>
             {error && (
                 <View>
-                    <Text>An error occurred. Please try again.</Text>{" "}
+                    <Text>An error occurred. Please try again.</Text>
                 </View>
             )}
             {submitError && (
                 <View>
-                    {" "}
                     <Text>
                         You already rated this song. Please try again.
-                    </Text>{" "}
+                    </Text>
                 </View>
             )}
             <View
@@ -206,7 +205,7 @@ const styles = StyleSheet.create({
         paddingVertical: 20,
     },
     input: {
-		height: 80,
+		height: 40,
 		marginVertical: 10,
 		marginBottom: 10,
 		fontSize: 20,
@@ -231,8 +230,8 @@ const styles = StyleSheet.create({
         backgroundColor: "orange",
 		alignItems: "center",
 		
-        paddingVertical: 10,
-        paddingHorizontal: 10,
+        paddingVertical: 2,
+        paddingHorizontal: 5,
     },
 
 });

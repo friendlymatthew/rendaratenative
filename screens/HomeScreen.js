@@ -76,12 +76,11 @@ export default function HomeScreen({ route, navigation }) {
 		axios
 			.get("http://127.0.0.1:8000/api/ratings")
 			.then((response) => {
-				console.log(response.data);
 
 				setData(response.data);
 			})
 			.catch((error) => {
-				console.log(error);
+
 				setErrorFlag(true);
 			});
 	});
