@@ -16,10 +16,11 @@ import axios from "axios";
 const Item = (rating) => (
 	<Pressable
 		style={{
-			backgroundColor: "#0891B2",
-
+			backgroundColor: "#00D2BE",
 			marginVertical: 10,
 			flexDirection: "row",
+			borderBottomEndRadius: 15,
+			borderBottomLeftRadius: 15,
 			paddingVertical: 10,
 			flexWrap: "wrap",
 			paddingHorizontal: 20,
@@ -37,19 +38,21 @@ const Item = (rating) => (
 		}
 	>
 		<View style={{}}>
+			<Text style={{ opacity: 0.8, fontSize: 14, paddingVertical: 3 }}>
+				Posted by {rating.username}
+			</Text>
 			<Text
 				style={{
-					fontSize: 20,
-					fontWeight: 600,
-					color: "white",
+					fontSize: 30,
+					fontWeight: "600",
 					opacity: 80,
 				}}
 			>
 				{rating.song}
 			</Text>
-			<Text>{rating.artist}</Text>
+			<Text style={{}}>{rating.artist}</Text>
 		</View>
-		<Text style={{ fontSize: 30, fontWeight: 600 }}>{rating.rating}</Text>
+		<Text style={{ fontSize: 30, fontWeight: "600" }}>{rating.rating}</Text>
 	</Pressable>
 );
 
@@ -83,43 +86,57 @@ export default function HomeScreen({ route, navigation }) {
 			});
 	});
 	return (
-		<View style={styles.container}>
-			<View style={{ flex: 1 }}>
-				<TouchableOpacity
-					style={styles.button}
-					onPress={() => navigation.navigate("Post", {})}
-				>
-					<Text style={styles.buttonText}>Create</Text>
-				</TouchableOpacity>
+		<SafeAreaView style={{ flex: 1, backgroundColor: "#80142B", height: 60 }}>
+			<View style={styles.container}>
+				<View style={{ flex: 1 }}>
+					<View
+						style={{
+							flexDirection: "row",
+							padding: 10,
+							backgroundColor: "#80142B",
+						}}
+					>
+						<TouchableOpacity
+							style={styles.button}
+							onPress={() => navigation.navigate("Post", {})}
+						>
+							<Text style={{ color: "white", fontSize: 30, fontWeight: "600" }}>
+								Create
+							</Text>
+						</TouchableOpacity>
+					</View>
+				</View>
+				<View style={{ flex: 1 }}></View>
+				<View style={{ flex: 8, width: 380 }}>
+					<Animated.FlatList
+						data={data}
+						renderItem={renderItem}
+						bounces={false}
+						keyExtractor={(item) => item.id}
+					/>
+				</View>
 			</View>
-			<View style={{ flex: 8, width: 380 }}>
-				<Animated.FlatList
-					data={data}
-					renderItem={renderItem}
-					bounces={false}
-					keyExtractor={(item) => item.id}
-				/>
-			</View>
-		</View>
+		</SafeAreaView>
 	);
 }
 
 const styles = StyleSheet.create({
 	container: {
-		backgroundColor: "#ECFEFF",
+		backgroundColor: "#c6c6c6",
 		flex: 1,
 		alignItems: "center",
 		justifyContent: "center",
 		paddingVertical: 20,
 	},
 	button: {
-		backgroundColor: "#07BEB8",
+		backgroundColor: "#80142B",
 		paddingHorizontal: 8,
 		paddingVertical: 6,
 	},
 	buttonText: {
 		fontSize: 20,
-		fontWeight: 600,
+		color: "#FFFFFF",
+		fontWeight: "600",
 		opacity: 0.7,
 	},
 });

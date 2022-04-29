@@ -41,43 +41,60 @@ export default function RatingScreen({ navigation, route }) {
 	};
 
 	return (
+		<SafeAreaView style={{ flex: 1}}>
 		<View
 			style={{
 				paddingHorizontal: 15,
+				backgroundColor: "#001a30",
+				height: 10000,
 			}}
 		>
-			<Text>
-				{id}, {username}, {song}, {artist}, {rating},
-			</Text>
 			<TouchableOpacity
 				onPress={() => navigation.navigate("Home", {})}
 				style={styles.button}
 			>
-				<Text>Go Back</Text>
+				<Text style={{ color: "white", fontSize: 30, fontWeight: "600" }}>
+					Go Back
+				</Text>
 			</TouchableOpacity>
-			<View>
-				<View styles={{ margin: 40 }}>
-					<View>
-						<Text>Update Song</Text>
-					</View>
-					<View>
-						<TextInput
-							style={styles.input}
-							onChangeText={(text) => setSongInput(text)}
-							placeholder={song}
-						></TextInput>
-					</View>
-				</View>
+			<View
+				style={{
+					justifyContent: "center",
+					flexDirection: "row",
+					marginVertical: 20,
+				}}
+			>
+				<Text style={{ color: "white", fontSize: 30, fontWeight: "600" }}>
+					Update
+				</Text>
+			</View>
+
+			<View style={{ margin: 40, paddingHorizontal: 30 }}>
+				<Text style={{ fontSize: 20, color: "white" }}>Update Song</Text>
+
+				<TextInput
+					style={styles.input}
+					onChangeText={(text) => setSongInput(text)}
+					placeholder={song}
+					styles={{ backgroundColor: "#FFC800" }}
+				></TextInput>
+
+				<Text style={{ fontSize: 20, color: "white", }}>Update Artist</Text>
 				<TextInput
 					style={styles.input}
 					onChangeText={(text) => setArtistInput(text)}
 					placeholder="Update Artist"
 				></TextInput>
+
+				<Text style={{ fontSize: 20, color: "white",  }}>Update Rating</Text>
 				<TextInput
 					style={styles.input}
+					keyboardType="numeric"
 					onChangeText={(text) => setRatingInput(text)}
-					placeholder="Update Rating"
+					placeholder="Enter a rating 1-5"
+					maxLength={1}
 				></TextInput>
+				
 			</View>
 			<View
 				style={{
@@ -88,8 +105,9 @@ export default function RatingScreen({ navigation, route }) {
 			>
 				<TouchableOpacity
 					style={{
-						backgroundColor: "red",
+						backgroundColor: "#db0a40",
 						paddingVertical: 4,
+
 						paddingHorizontal: 7,
 					}}
 					onPress={(e) => {
@@ -103,12 +121,14 @@ export default function RatingScreen({ navigation, route }) {
 						);
 					}}
 				>
-					<Text>Update</Text>
+					<Text style={{ fontSize: 30, color: "white", fontWeight: "600" }}>
+						Update
+					</Text>
 				</TouchableOpacity>
 
 				<TouchableOpacity
 					style={{
-						backgroundColor: "red",
+						backgroundColor: "#db0a40",
 						paddingVertical: 4,
 						paddingHorizontal: 7,
 					}}
@@ -117,10 +137,13 @@ export default function RatingScreen({ navigation, route }) {
 						navigation.navigate("Home", {});
 					}}
 				>
-					<Text>Delete</Text>
+					<Text style={{ fontSize: 30, color: "white", fontWeight: "600" }}>
+						Delete
+					</Text>
 				</TouchableOpacity>
 			</View>
 		</View>
+		</SafeAreaView>
 	);
 }
 
@@ -132,15 +155,26 @@ const styles = StyleSheet.create({
 		paddingVertical: 20,
 	},
 	button: {
-		backgroundColor: "#07BEB8",
+		backgroundColor: "#db0a40",
 		paddingHorizontal: 5,
 		paddingVertical: 8,
 	},
 	buttonText: {
 		fontSize: 40,
 	},
+	inputText: {
+		color: "white",
+		fontSize: 20,
+	},
 	input: {
-		height: 40,
+		height: 80,
+		marginVertical: 10,
+		marginBottom: 10,
+		fontSize: 20,
+		color: "#001a30",
+		fontWeight: "600",
+		backgroundColor: "#FFC800",
+		paddingHorizontal: 20,
 		borderWidth: 1,
 	},
 	inputFill: {

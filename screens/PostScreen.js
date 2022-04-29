@@ -112,6 +112,7 @@ export default function PostScreen({ navigation }) {
     };
 
     return (
+		<SafeAreaView style={{ flex: 1}}>
         <View style={styles.container}>
             <View style={{ flex: 1 }}>
                 <Text
@@ -124,36 +125,36 @@ export default function PostScreen({ navigation }) {
             </View>
             <View style={{ flex: 8 }}>
                 <View style={styles.field}>
-                    <Text style={{ marginHorizontal: 7 }}>Username</Text>
+                    <Text style={{ marginHorizontal: 7, fontSize: 15, fontWeight: "600", }}>Username</Text>
                     <TextInput
-                        styles={styles.input}
+                        style={styles.input}
                         onChangeText={(text) => handleUsernameChange(text)}
                         value={state.username}
                     />
                 </View>
 
                 <View style={styles.field}>
-                    <Text style={{ marginHorizontal: 7 }}>Song</Text>
+                    <Text style={{ marginHorizontal: 7, fontSize: 15, fontWeight: "600",}}>Song</Text>
                     <TextInput
-                        styles={styles.input}
+                        style={styles.input}
                         onChangeText={(text) => handleSongChange(text)}
                         value={state.song}
                     />
                 </View>
 
                 <View style={styles.field}>
-                    <Text style={{ marginHorizontal: 7 }}>Artist</Text>
+                    <Text style={{ marginHorizontal: 7, fontSize: 15, fontWeight: "600", }}>Artist</Text>
                     <TextInput
-                        styles={styles.input}
+                        style={styles.input}
                         onChangeText={(text) => handleArtistChange(text)}
                         value={state.artist}
                     />
                 </View>
 
                 <View style={styles.field}>
-                    <Text style={{ marginHorizontal: 7 }}>Rating</Text>
+                    <Text style={{ marginHorizontal: 7, fontSize: 15, fontWeight: "600", }}>Rating</Text>
                     <TextInput
-                        styles={styles.input}
+                        style={styles.input}
                         keyboardType="numeric"
                         maxLength={1}
                         onChangeText={(text) => handleRatingChange(text)}
@@ -193,6 +194,7 @@ export default function PostScreen({ navigation }) {
                 </TouchableOpacity>
             </View>
         </View>
+		</SafeAreaView>
     );
 }
 
@@ -204,9 +206,16 @@ const styles = StyleSheet.create({
         paddingVertical: 20,
     },
     input: {
-        height: 40,
-        backgroundColor: "white",
-    },
+		height: 80,
+		marginVertical: 10,
+		marginBottom: 10,
+		fontSize: 20,
+		color: "#001a30",
+		fontWeight: "600",
+		backgroundColor: "#FFC800",
+		paddingHorizontal: 20,
+		borderWidth: 1,
+	},
     button: {
         backgroundColor: "#07BEB8",
         padding: 20,
@@ -220,7 +229,10 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         flexWrap: "wrap",
         backgroundColor: "orange",
+		alignItems: "center",
+		
         paddingVertical: 10,
         paddingHorizontal: 10,
     },
+
 });
