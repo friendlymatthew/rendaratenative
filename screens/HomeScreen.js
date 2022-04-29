@@ -16,7 +16,9 @@ import axios from "axios";
 const Item = (rating) => (
 	<Pressable
 		style={{
-			backgroundColor: "red",
+			backgroundColor: "#0891B2",
+
+			marginVertical: 10,
 			flexDirection: "row",
 			paddingVertical: 10,
 			flexWrap: "wrap",
@@ -39,6 +41,7 @@ const Item = (rating) => (
 				style={{
 					fontSize: 20,
 					fontWeight: 600,
+					color: "white",
 					opacity: 80,
 				}}
 			>
@@ -89,7 +92,7 @@ export default function HomeScreen({ route, navigation }) {
 					<Text style={styles.buttonText}>Create</Text>
 				</TouchableOpacity>
 			</View>
-			<View style={{ flex: 8, width: 380, backgroundColor: "#3c69e7" }}>
+			<View style={{ flex: 8, width: 380 }}>
 				<Animated.FlatList
 					data={data}
 					renderItem={renderItem}
@@ -103,6 +106,7 @@ export default function HomeScreen({ route, navigation }) {
 
 const styles = StyleSheet.create({
 	container: {
+		backgroundColor: "#ECFEFF",
 		flex: 1,
 		alignItems: "center",
 		justifyContent: "center",
