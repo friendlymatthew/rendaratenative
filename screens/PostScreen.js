@@ -31,31 +31,37 @@ export default function PostScreen({ navigation }) {
         }
     });
 
-	const handleUsernameChange = (input) => {
-        setState({
+    const handleUsernameChange = (input) => {
+        setState((state) => ({
+            ...state,
             username: input,
-        });
+        }));
     };
 
     const handleSongChange = (input) => {
-        setState({
+        setState((state) => ({
+            ...state,
             song: input,
-        });
+        }));
     };
 
     const handleArtistChange = (input) => {
-        setState({
+        setState((state) => ({
+            ...state,
             artist: input,
-        });
+        }));
     };
 
     const handleRatingChange = (input) => {
-        setState({
+        setState((state) => ({
+            ...state,
             rating: input.replace(/[^1-5]/g, ""),
-        });
+        }));
     };
 
     const handleSubmit = () => {
+        console.log("Submit res form:", state);
+
         axios
             .get("http://127.0.0.1:8000/api/ratings")
             .then(function (response) {
@@ -156,6 +162,19 @@ export default function PostScreen({ navigation }) {
                     />
                 </View>
             </View>
+            {error && (
+                <View>
+                    <Text>An error occurred. Please try again.</Text>{" "}
+                </View>
+            )}
+            {submitError && (
+                <View>
+                    {" "}
+                    <Text>
+                        You already rated this song. Please try again.
+                    </Text>{" "}
+                </View>
+            )}
             <View
                 style={{
                     flexDirection: "row",

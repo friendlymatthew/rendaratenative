@@ -2,6 +2,7 @@ import {
 	StyleSheet,
 	Button,
 	Text,
+	Animated,
 	Pressable,
 	SafeAreaView,
 	View,
@@ -15,7 +16,9 @@ import axios from "axios";
 const Item = (rating) => (
 	<Pressable
 		style={{
-			backgroundColor: "red",
+			backgroundColor: "#0891B2",
+
+			marginVertical: 10,
 			flexDirection: "row",
 			paddingVertical: 10,
 			flexWrap: "wrap",
@@ -23,21 +26,22 @@ const Item = (rating) => (
 			alignItems: "center",
 			justifyContent: "space-between",
 		}}
-		onPress={() => rating.navigation.navigate("Rating", {
-			id: rating.id,
-			song: rating.song,
-			artist: rating.artist,
-			rating: rating.rating,
-			username: rating.username,
-		})}
+		onPress={() =>
+			rating.navigation.navigate("Rating", {
+				id: rating.id,
+				song: rating.song,
+				artist: rating.artist,
+				rating: rating.rating,
+				username: rating.username,
+			})
+		}
 	>
-		<View style={{
-
-		}}>
+		<View style={{}}>
 			<Text
 				style={{
 					fontSize: 20,
 					fontWeight: 600,
+					color: "white",
 					opacity: 80,
 				}}
 			>
@@ -45,7 +49,7 @@ const Item = (rating) => (
 			</Text>
 			<Text>{rating.artist}</Text>
 		</View>
-		<Text style={{ fontSize: 30, fontWeight: 600}}>{rating.rating}</Text>
+		<Text style={{ fontSize: 30, fontWeight: 600 }}>{rating.rating}</Text>
 	</Pressable>
 );
 
@@ -77,7 +81,7 @@ export default function HomeScreen({ route, navigation }) {
 				console.log(error);
 				setErrorFlag(true);
 			});
-	}, []);
+	});
 	return (
 		<View style={styles.container}>
 			<View style={{ flex: 1 }}>
@@ -88,10 +92,11 @@ export default function HomeScreen({ route, navigation }) {
 					<Text style={styles.buttonText}>Create</Text>
 				</TouchableOpacity>
 			</View>
-			<View style={{ flex: 8, width: 380, backgroundColor: "#3c69e7" }}>
-				<FlatList
+			<View style={{ flex: 8, width: 380 }}>
+				<Animated.FlatList
 					data={data}
 					renderItem={renderItem}
+					bounces={false}
 					keyExtractor={(item) => item.id}
 				/>
 			</View>
@@ -101,6 +106,7 @@ export default function HomeScreen({ route, navigation }) {
 
 const styles = StyleSheet.create({
 	container: {
+		backgroundColor: "#ECFEFF",
 		flex: 1,
 		alignItems: "center",
 		justifyContent: "center",
@@ -108,9 +114,12 @@ const styles = StyleSheet.create({
 	},
 	button: {
 		backgroundColor: "#07BEB8",
-		padding: 20,
+		paddingHorizontal: 8,
+		paddingVertical: 6,
 	},
 	buttonText: {
-		fontSize: 40,
+		fontSize: 20,
+		fontWeight: 600,
+		opacity: 0.7,
 	},
 });
